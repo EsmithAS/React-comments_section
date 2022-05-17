@@ -1,7 +1,11 @@
+import ListComments from './components/ListComments'
+import InputComment from './components/InputComment'
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hola mundo</h1>
+    <div className="App container mx-auto">
+      <ListComments />
+      <InputComment />
     </div>
   )
 }
