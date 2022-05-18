@@ -1,20 +1,26 @@
-const Comment = () => {
+import { useState } from "react";
+
+const Comment = ( { commentUser } ) => {
+    const { photo , username , comment , date , score } = commentUser;
+    const [ scoreValue , setScoreValue ] = useState(score);
+
+
     return (
         <div className="w-full flex bg-white px-4 py-5 rounded-xl">
             <div className="w-16 flex items-center justify-center">
                 <div className="flex flex-col items-center text-gray-500 bg-gray-100 rounded-lg overflow-hidden">
-                    <button className="w-full py-1 px-4 hover:bg-gray-200">+</button>
-                    <span className="my-2 text-xs text-indigo-600">12</span>
-                    <button className="w-full py-1 px-4 hover:bg-gray-200">-</button>
+                    <button onClick={ () => setScoreValue( scoreValue + 1 ) } className="w-full py-1 px-4 hover:bg-gray-200">+</button>
+                    <span className="my-2 text-xs text-indigo-600">{ scoreValue }</span>
+                    <button onClick={ () => setScoreValue( scoreValue - 1 ) } className="w-full py-1 px-4 hover:bg-gray-200">-</button>
                 </div>
             </div>
             <div className="flex-1  px-2">
                 <header className="flex justify-between">
                     <div className="flex space-x-3 items-center">
-                        <img className="w-10 h-10 object-cover rounded-full object-center" src="https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-                        <h2 className="font-semibold text-sm text-gray-700">Esmith AS</h2>
+                        <img className="w-10 h-10 object-cover rounded-full object-center" src = { photo } alt = { photo } />
+                        <h2 className="font-semibold text-sm text-gray-700">{ username }</h2>
                         <span className="bg-indigo-600 text-white text-xs rounded-md px-2 py-1 inline-block">You</span>
-                        <span className="text-sm text-gray-700">1 month ago.</span>
+                        <span className="text-sm text-gray-700">{ date }</span>
                     </div>
                     <div className="flex items-center space-x-5">
                         <button className="inline-flex items-center space-x-1 text-indigo-600 font-bold">
@@ -46,7 +52,7 @@ const Comment = () => {
                 </header>
                 <section className="mt-3">
                     <p className="text-gray-500 text-sm">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusantium pariatur qui incidunt architecto tenetur voluptate modi, nisi praesentium nulla id tempora ab in perspiciatis!
+                        { comment }
                     </p>
                 </section>
             </div>
