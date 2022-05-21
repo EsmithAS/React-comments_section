@@ -14,7 +14,26 @@ const ListComments = ( { listComments }) => {
                     date: "Thu May 19 2022",
                     id: "t324df28clel3dwgwrad1",
                     photo: "https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-                    comments: [],
+                    comments: [
+                        {
+                            comment: "asasdsad",
+                            date: "Thu May 19 2022",
+                            id: "t324df28clel3dwgwrad551",
+                            photo: "https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                            comments: [],
+                            score: 0,
+                            username: "Esmith AS",
+                        },
+                        {
+                            comment: "asasdsad",
+                            date: "Thu May 19 2022",
+                            id: "t324df28clel3dwgwra87d551",
+                            photo: "https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                            comments: [],
+                            score: 0,
+                            username: "Esmith AS",
+                        }
+                    ],
                     score: 0,
                     username: "Esmith AS",
                 },
@@ -29,7 +48,7 @@ const ListComments = ( { listComments }) => {
                 },
             ],
             score: 0,
-            username: "Esmith AS",
+            username: "Esmith AS 1",
         },
         {
             comment: "asasdsad",
@@ -38,69 +57,78 @@ const ListComments = ( { listComments }) => {
             photo: "https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
             comments: [],
             score: 0,
-            username: "Esmith AS",
+            username: "Esmith AS 2",
         }
     ]
 
-        const data = {
-                id : 1,
-                comments : [
-                    {
-                        id : 2,
-                        comments : [
-                            {
-                                id : 3,
-                                comments : [
-                                    {
-                                        id: 15
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id : 4,
-                        comments : [
-                            {
-                                id : 5,
-                            }
-                        ]
-                    }
-                ]
-            }
+        // const data = {
+        //         id : 1,
+        //         comments : [
+        //             {
+        //                 id : 2,
+        //                 comments : [
+        //                     {
+        //                         id : 3,
+        //                         comments : [
+        //                             {
+        //                                 id: 15
+        //                             }
+        //                         ]
+        //                     }
+        //                 ]
+        //             },
+        //             {
+        //                 id : 4,
+        //                 comments : [
+        //                     {
+        //                         id : 5,
+        //                     }
+        //                 ]
+        //             }
+        //         ]
+        //     }
 
-    // const procesarComments = ( arr , padding = 0 ) => {
+    // const procesarComments = ( arr , padding = '' ) => {
     //     let paddingValue = padding;
     //     arr.forEach(commentData => {
-    //         console.log(commentData.id);
+    //         console.log(padding+commentData.id);
     //         if (Object.keys(commentData).includes('comments')) {
-    //             paddingValue ++;
+    //             paddingValue += '-';
     //             procesarComments(commentData.comments, paddingValue);
     //         }
     //     });
     // }
 
     // procesarComments(data.comments);
-    const procesarComments = ( arr, padding = 0 , listCommentProccess = []) => {
+
+    const elementos = [];
+    const procesarComments = ( arr , padding = 0, border = '' ) => {
         let paddingValue = padding;
-        listCommentProccess = arr.map(commentUser => {
-            <div style={{'pading-let': paddingValue+'px'}}>
-                <Comment key = { commentUser.id } commentUser = { commentUser } />
-            </div>
+        arr.forEach(commentUser => {
+            elementos.push(                
+                <div
+                    key = { commentUser.id }
+                    data-pp={padding}
+                    className={border}
+                    style={{ paddingLeft: border.length > 0 ? '32px': '0px', marginLeft: 50 * padding }}
+                >
+                 <Comment commentUser = { commentUser } />
+                </div>
+            );
             if (Object.keys(commentUser).includes('comments')) {
-                paddingValue ++;
-                procesarComments(commentUser.comments , paddingValue , listCommentProccess);
+                paddingValue++;
+                const border = commentUser.comments.length > 1 ? 'border-l-4 border-indigo-200' : '';
+                procesarComments(commentUser.comments, paddingValue,border);
             }
         });
-        return listCommentProccess;
     }
-   console.log(procesarComments(arrData));
+    procesarComments(arrData);
 
     const mapListComments =  arrData.map( (commentUser) => <Comment key = { commentUser.id } commentUser = { commentUser } /> )
 
     return (
         <div className="space-y-5 mt-10">
-            {mapListComments}
+            {elementos}
         </div>
         
     )
