@@ -61,46 +61,6 @@ const ListComments = ( { listComments }) => {
         }
     ]
 
-        // const data = {
-        //         id : 1,
-        //         comments : [
-        //             {
-        //                 id : 2,
-        //                 comments : [
-        //                     {
-        //                         id : 3,
-        //                         comments : [
-        //                             {
-        //                                 id: 15
-        //                             }
-        //                         ]
-        //                     }
-        //                 ]
-        //             },
-        //             {
-        //                 id : 4,
-        //                 comments : [
-        //                     {
-        //                         id : 5,
-        //                     }
-        //                 ]
-        //             }
-        //         ]
-        //     }
-
-    // const procesarComments = ( arr , padding = '' ) => {
-    //     let paddingValue = padding;
-    //     arr.forEach(commentData => {
-    //         console.log(padding+commentData.id);
-    //         if (Object.keys(commentData).includes('comments')) {
-    //             paddingValue += '-';
-    //             procesarComments(commentData.comments, paddingValue);
-    //         }
-    //     });
-    // }
-
-    // procesarComments(data.comments);
-
     const elementos = [];
     const procesarComments = ( arr , padding = 0, border = '' ) => {
         let paddingValue = padding;
@@ -123,8 +83,6 @@ const ListComments = ( { listComments }) => {
         });
     }
     procesarComments(arrData);
-
-    const mapListComments =  arrData.map( (commentUser) => <Comment key = { commentUser.id } commentUser = { commentUser } /> )
 
     return (
         <div className="space-y-5 mt-10">
